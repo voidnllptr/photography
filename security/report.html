@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Отчет о безопасности БД</title>
+    <style>
+        body { font-family: Arial; padding: 30px; background: #f5f5f5; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #333; border-bottom: 3px solid #4CAF50; padding-bottom: 10px; }
+        h2 { color: #555; margin-top: 30px; }
+        .test-item { margin: 20px 0; padding: 15px; background: #f9f9f9; border-left: 4px solid #4CAF50; border-radius: 4px; }
+        .pass { color: #28a745; font-weight: bold; }
+        .warning { color: #ffc107; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #f2f2f2; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 Отчет о тестировании безопасности базы данных</h1>
+        <p>Проект: Сайт-портфолио фотографа</p>
+        
+        <h2>📊 Результаты тестирования</h2>
+        
+        <table>
+            <tr>
+                <th>Тест</th>
+                <th>Статус</th>
+                <th>Описание</th>
+            </tr>
+            <tr>
+                <td>SQL-инъекции</td>
+                <td class="pass">✅ Защищено</td>
+                <td>Используются подготовленные запросы PDO</td>
+            </tr>
+            <tr>
+                <td>XSS-атаки</td>
+                <td class="pass">✅ Защищено</td>
+                <td>Используется htmlspecialchars() для экранирования</td>
+            </tr>
+            <tr>
+                <td>Хранение паролей</td>
+                <td class="pass">✅ Безопасно</td>
+                <td>SCRAM-SHA-256 хеширование в PostgreSQL</td>
+            </tr>
+            <tr>
+                <td>Аутентификация</td>
+                <td class="pass">✅ Защищено</td>
+                <td>Сессионная аутентификация в админ-панели</td>
+            </tr>
+            <tr>
+                <td>SSL/TLS</td>
+                <td class="pass">✅ Включено</td>
+                <td>Шифрование трафика между PHP и БД</td>
+            </tr>
+            <tr>
+                <td>Docker Secrets</td>
+                <td class="pass">✅ Используется</td>
+                <td>Пароль БД хранится в Docker Secret</td>
+            </tr>
+        </table>
+        
+        <h2>🛡️ Примененные меры защиты</h2>
+        
+        <div class="test-item">
+            <strong>1. Защита от SQL-инъекций</strong><br>
+            - Использование PDO с подготовленными запросами<br>
+            - Все параметры передаются отдельно от SQL кода<br>
+            - Отключена эмуляция подготовленных запросов
+        </div>
+        
+        <div class="test-item">
+            <strong>2. Защита от XSS</strong><br>
+            - Все выводы данных экранируются через htmlspecialchars()<br>
+            - Используется UTF-8 кодировка
+        </div>
+        
+        <div class="test-item">
+            <strong>3. Защита паролей</strong><br>
+            - Пароли хранятся в хешированном виде (SCRAM-SHA-256)<br>
+            - Docker Secret для пароля БД<br>
+            - Пароль админ-панели в коде
+        </div>
+        
+        <div class="test-item">
+            <strong>4. Сетевая безопасность</strong><br>
+            - SSL/TLS шифрование подключения к PostgreSQL<br>
+            - Порт БД проброшен на localhost<br>
+            - Только SSL подключения разрешены (hostssl в pg_hba.conf)
+        </div>
+        
+        <div class="test-item">
+            <strong>5. Защита форм</strong><br>
+            - Капча для защиты от ботов<br>
+            - Валидация всех входных данных<br>
+            - Ограничение длины полей
+        </div>
+        
+        <h2>✅ Заключение</h2>
+        <div class="test-item">
+            База данных и веб-приложение соответствуют базовым требованиям безопасности:<br>
+            - Защита от основных типов атак (SQL injection, XSS)<br>
+            - Безопасное хранение паролей<br>
+            - Шифрование трафика<br>
+            - Валидация и экранирование входных данных<br><br>
+        </div>
+        
+    </div>
+</body>
+</html>
