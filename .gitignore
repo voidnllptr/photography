@@ -1,0 +1,41 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# PHP
+*.log
+php_errors.log
+error_log
+
+# Database
+pgdata/
+*.sqlite
+*.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Secrets
+*.key
+*.crt
+ssl/
+
+# Uploads
+uploads/
+temp/
+
+# Docker
+docker-compose.override.yml
+
+# Composer
+composer.phar
+vendor/
+composer.lock
